@@ -5,12 +5,20 @@ import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
+  
+/*   const [timerState, setTimerState] = useState({
+    "focusDuration": '25:00',
+    "breakDuration": '05:00',
+    "isTimerRunning": false,
+    "remainingTime":  '25:00'
+  }); */
+  
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useInterval(
     () => {
-      // ToDo: Implement what should happen when the timer is running
+      // (x)ToDo: Implement what should happen when the timer is running
       setIsTimerRunning(true);
     },
     isTimerRunning ? 1000 : null
