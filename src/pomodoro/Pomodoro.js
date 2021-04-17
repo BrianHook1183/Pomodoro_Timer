@@ -8,10 +8,11 @@ function Pomodoro() {
   const [timerState, setTimerState] = useState({
     focusDuration: 1500,
     breakDuration: 300,
-    focusing: true,
-    // isTimerRunning: false,
+    focusing: false,
+    breaking: false,
     remainingTime: 1500,
   });
+  //! focusing/breaking could be combined to a single variable called activeSessionType (= "focus", "break" or null).
 
   //! isTimerRunning provided by starter code, might absorb into timerState
   // Timer starts out paused
@@ -41,7 +42,28 @@ function Pomodoro() {
   );
 
   function playPause() {
-    setIsTimerRunning((prevState) => !prevState);
+    const { focusing, breaking } = timerState;
+    // First press play
+    if (!focusing && !breaking) {
+      setIsTimerRunning((prevState) => !prevState);
+      setTimerState({
+        ...timerState,
+        ["focusing"]: true,
+      });
+    }
+    // toggle play during focus or break
+    if (focusing || breaking) {
+      setIsTimerRunning((prevState) => !prevState);
+    }
+  }
+
+  function stopTimer() {
+    setIsTimerRunning(false);
+    setTimerState({
+      ...timerState,
+      ["focusing"]: false,
+      ["breaking"]: false,
+    });
   }
 
   return (
@@ -52,9 +74,10 @@ function Pomodoro() {
         increment={increment}
       />
       <Controls
-        playPause={playPause}
         isTimerRunning={isTimerRunning}
-        setTimerState={setTimerState}
+        playPause={playPause}
+        timerState={timerState}
+        stopTimer={stopTimer}
       />
       <Feedback timerState={timerState} isTimerRunning={isTimerRunning} />
     </div>

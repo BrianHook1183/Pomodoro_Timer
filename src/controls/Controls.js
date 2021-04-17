@@ -1,8 +1,13 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-// if I add timeIsRunning back into timerState, then the destructuring will look like  Controls({ playPause, setTimerState, timerState: {isTimerRunning}  })
-function Controls({ playPause, setTimerState, isTimerRunning }) {
+// if I add timeIsRunning back into timerState, then the destructuring will look like  Controls({ playPause, isTimerRunning, stopTimer, timerState: {isTimerRunning}  })
+function Controls({
+  playPause,
+  isTimerRunning,
+  stopTimer,
+  timerState: { focusing, breaking },
+}) {
   return (
     <div className="row">
       <div className="col">
@@ -32,6 +37,8 @@ function Controls({ playPause, setTimerState, isTimerRunning }) {
             className="btn btn-secondary"
             data-testid="stop"
             title="Stop the session"
+            disabled={!focusing && !breaking}
+            onClick={stopTimer}
           >
             <span className="oi oi-media-stop" />
           </button>
