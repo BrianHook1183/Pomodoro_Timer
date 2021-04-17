@@ -2,13 +2,13 @@ import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
 function Feedback({ timerState, isTimerRunning }) {
-  const { focusing, breaking, focusDuration, remainingTime } = timerState;
-  const status = focusing ? "Focusing" : "On Break";
+  const { currentMode, focusDuration, remainingTime } = timerState;
+  const status = currentMode === "focusing" ? "Focusing" : "On Break";
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
 
   return (
     // This area only shows when a focus or break session is running or pauses
-    (focusing || breaking) && (
+    currentMode && (
       <div>
         <div className="row mb-2">
           <div className="col">

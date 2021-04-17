@@ -2,7 +2,7 @@ import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
 function BreakDuration({ timerState, decrement, increment }) {
-  const { breakDuration, focusing, breaking } = timerState;
+  const { breakDuration, currentMode } = timerState;
   return (
     <div className="col">
       <div className="float-right">
@@ -17,7 +17,7 @@ function BreakDuration({ timerState, decrement, increment }) {
               type="button"
               className="btn btn-secondary"
               data-testid="decrease-break"
-              disabled={focusing || breaking}
+              disabled={currentMode}
             >
               <span className="oi oi-minus" />
             </button>
@@ -27,7 +27,7 @@ function BreakDuration({ timerState, decrement, increment }) {
               type="button"
               className="btn btn-secondary"
               data-testid="increase-break"
-              disabled={focusing || breaking}
+              disabled={currentMode}
             >
               <span className="oi oi-plus" />
             </button>

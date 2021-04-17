@@ -6,7 +6,7 @@ function Controls({
   playPause,
   isTimerRunning,
   stopTimer,
-  timerState: { focusing, breaking },
+  timerState: { currentMode },
 }) {
   return (
     <div className="row">
@@ -37,7 +37,7 @@ function Controls({
             className="btn btn-secondary"
             data-testid="stop"
             title="Stop the session"
-            disabled={!focusing && !breaking}
+            disabled={!currentMode}
             onClick={stopTimer}
           >
             <span className="oi oi-media-stop" />

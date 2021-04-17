@@ -2,7 +2,7 @@ import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
 function FocusDuration({ timerState, decrement, increment }) {
-  const { focusDuration, focusing, breaking } = timerState;
+  const { focusDuration, currentMode } = timerState;
   return (
     <div className="col">
       <div className="input-group input-group-lg mb-2">
@@ -16,7 +16,7 @@ function FocusDuration({ timerState, decrement, increment }) {
             type="button"
             className="btn btn-secondary"
             data-testid="decrease-focus"
-            disabled={focusing || breaking}
+            disabled={currentMode}
           >
             <span className="oi oi-minus" />
           </button>
@@ -26,7 +26,7 @@ function FocusDuration({ timerState, decrement, increment }) {
             type="button"
             className="btn btn-secondary"
             data-testid="increase-focus"
-            disabled={focusing || breaking}
+            disabled={currentMode}
           >
             <span className="oi oi-plus" />
           </button>
