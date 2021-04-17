@@ -8,11 +8,10 @@ function BreakDuration({ timerState, setTimerState }) {
       <div className="float-right">
         <div className="input-group input-group-lg mb-2">
           <span className="input-group-text" data-testid="duration-break">
-            {/* (x)TODO: Update this text to display the current break session duration */}
             Break Duration: {secondsToDuration(breakDuration)}
           </span>
           <div className="input-group-append">
-            {/* TODO: Implement decreasing break duration and disable during a focus or break session*/}
+            {/* TODO: disable during a focus or break session*/}
             <button
               onClick={() =>
                 setTimerState({
@@ -26,8 +25,14 @@ function BreakDuration({ timerState, setTimerState }) {
             >
               <span className="oi oi-minus" />
             </button>
-            {/* TODO: Implement increasing break duration and disable during a focus or break session*/}
+            {/* TODO: disable during a focus or break session*/}
             <button
+              onClick={() =>
+                setTimerState({
+                  ...timerState,
+                  ["breakDuration"]: breakDuration + 60,
+                })
+              }
               type="button"
               className="btn btn-secondary"
               data-testid="increase-break"

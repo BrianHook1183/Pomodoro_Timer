@@ -6,7 +6,7 @@ function Feedback({ timerState }) {
   const status = focusing ? "Focusing" : "On Break";
 
   return (
-    // This area should show only when a focus or break session is running or pauses
+    // This area only shows when a focus or break session is running or pauses
     isTimerRunning && (
       <div>
         <div className="row mb-2">
