@@ -2,11 +2,11 @@ import React from "react";
 import FocusDuration from "./FocusDuration";
 import BreakDuration from "./BreakDuration";
 
-function Setup() {
+function Setup({ timerState, setTimerState }) {
   return (
     <div className="row">
-      <FocusDuration />
-      <BreakDuration />
+      <FocusDuration timerState={timerState} setTimerState={setTimerState} />
+      <BreakDuration timerState={timerState} setTimerState={setTimerState} />
     </div>
   );
 }

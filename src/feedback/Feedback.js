@@ -1,16 +1,17 @@
 import React from "react";
+import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
-function Feedback() {
+function Feedback({ timerState }) {
   return (
     <div>
       {/* TODO: This area should show only when a focus or break session is running or pauses */}
       <div className="row mb-2">
         <div className="col">
-          {/* TODO: Update message below to include current session (Focusing or On Break) and total duration */}
-          <h2 data-testid="session-title">Focusing for 25:00 minutes</h2>
-          {/* TODO: Update message below to include time remaining in the current session */}
+          {/* (x)TODO: Update message below to include current session (Focusing or On Break) and total duration */}
+          <h2 data-testid="session-title">Focusing for {secondsToDuration(timerState.focusDuration)} minutes</h2>
+          {/* (x)TODO: Update message below to include time remaining in the current session */}
           <p className="lead" data-testid="session-sub-title">
-            25:00 remaining
+          {secondsToDuration(timerState.remainingTime)} remaining
           </p>
         </div>
       </div>

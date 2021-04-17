@@ -5,14 +5,17 @@ import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
-  
-/*   const [timerState, setTimerState] = useState({
-    "focusDuration": '25:00',
-    "breakDuration": '05:00',
-    "isTimerRunning": false,
-    "remainingTime":  '25:00'
-  }); */
-  
+  const [timerState, setTimerState] = useState({
+    focusDuration: 1500,
+    breakDuration: 300,
+    focusing: true,
+    // isTimerRunning: false,
+    remainingTime: 1500,
+  });
+
+  console.log({ ...timerState });
+
+  //! This state was provided by starter code, not sure if I can absorb it into my timerState or if that will break tests. Check back later
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -30,9 +33,13 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <Setup />
-      <Controls playPause={playPause} isTimerRunning={isTimerRunning} />
-      <Feedback />
+      <Setup timerState={timerState} setTimerState={setTimerState} />
+      <Controls
+        playPause={playPause}
+        isTimerRunning={isTimerRunning}
+        setTimerState={setTimerState}
+      />
+      <Feedback timerState={timerState} />
     </div>
   );
 }
