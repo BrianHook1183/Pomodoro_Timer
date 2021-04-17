@@ -6,8 +6,8 @@ import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
   const [timerState, setTimerState] = useState({
-    focusDuration: 300,
-    breakDuration: 60,
+    focusDuration: 1500,
+    breakDuration: 300,
     currentMode: false,
     remainingTime: null,
   });

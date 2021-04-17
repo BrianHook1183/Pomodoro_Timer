@@ -11,6 +11,7 @@ function Feedback({ timerState, isTimerRunning }) {
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
   const duration = currentMode === "focusing" ? focusDuration : breakDuration;
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
+  const progress = (1 - remainingTime / duration) * 100;
 
   return (
     // This area only shows when a focus or break session is running or paused
@@ -35,8 +36,8 @@ function Feedback({ timerState, isTimerRunning }) {
                 role="progressbar"
                 aria-valuemin="0"
                 aria-valuemax="100"
-                aria-valuenow="0" // TODO: Increase aria-valuenow as elapsed time increases
-                style={{ width: "0%" }} // TODO: Increase width % as elapsed time increases
+                aria-valuenow={progress}
+                style={{ width: `${progress}%` }}
               />
             </div>
           </div>
