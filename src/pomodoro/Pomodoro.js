@@ -17,6 +17,20 @@ function Pomodoro() {
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
+  function decrement(focusOrBreak) {
+    setTimerState({
+      ...timerState,
+      [focusOrBreak]: timerState[focusOrBreak] - 60,
+    });
+  }
+
+  function increment(focusOrBreak) {
+    setTimerState({
+      ...timerState,
+      [focusOrBreak]: timerState[focusOrBreak] + 60,
+    });
+  }
+
   useInterval(
     () => {
       // ToDo: Implement what should happen when the timer is running
@@ -32,7 +46,11 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <Setup timerState={timerState} setTimerState={setTimerState} />
+      <Setup
+        timerState={timerState}
+        decrement={decrement}
+        increment={increment}
+      />
       <Controls
         playPause={playPause}
         isTimerRunning={isTimerRunning}

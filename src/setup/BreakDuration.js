@@ -1,7 +1,7 @@
 import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
-function BreakDuration({ timerState, setTimerState }) {
+function BreakDuration({ timerState, decrement, increment }) {
   const { breakDuration } = timerState;
   return (
     <div className="col">
@@ -13,12 +13,7 @@ function BreakDuration({ timerState, setTimerState }) {
           <div className="input-group-append">
             {/* TODO: disable during a focus or break session*/}
             <button
-              onClick={() =>
-                setTimerState({
-                  ...timerState,
-                  ["breakDuration"]: breakDuration - 60,
-                })
-              }
+              onClick={() => decrement("breakDuration")}
               type="button"
               className="btn btn-secondary"
               data-testid="decrease-break"
@@ -27,12 +22,7 @@ function BreakDuration({ timerState, setTimerState }) {
             </button>
             {/* TODO: disable during a focus or break session*/}
             <button
-              onClick={() =>
-                setTimerState({
-                  ...timerState,
-                  ["breakDuration"]: breakDuration + 60,
-                })
-              }
+              onClick={() => increment("breakDuration")}
               type="button"
               className="btn btn-secondary"
               data-testid="increase-break"
