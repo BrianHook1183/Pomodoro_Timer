@@ -2,8 +2,14 @@ import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
 function Feedback({ timerState, isTimerRunning }) {
-  const { currentMode, focusDuration, remainingTime } = timerState;
+  const {
+    currentMode,
+    focusDuration,
+    breakDuration,
+    remainingTime,
+  } = timerState;
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
+  const duration = currentMode === "focusing" ? focusDuration : breakDuration;
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
 
   return (
@@ -13,7 +19,7 @@ function Feedback({ timerState, isTimerRunning }) {
         <div className="row mb-2">
           <div className="col">
             <h2 data-testid="session-title">
-              {status} for {secondsToDuration(focusDuration)} minutes
+              {status} for {secondsToDuration(duration)} minutes
             </h2>
             <p className="lead" data-testid="session-sub-title">
               {secondsToDuration(remainingTime)} remaining

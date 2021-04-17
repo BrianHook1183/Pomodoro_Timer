@@ -6,10 +6,10 @@ import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
   const [timerState, setTimerState] = useState({
-    focusDuration: 1500,
-    breakDuration: 300,
+    focusDuration: 300,
+    breakDuration: 60,
     currentMode: false,
-    remainingTime: 1500,
+    remainingTime: null,
   });
 
   //! isTimerRunning provided by starter code, might absorb into timerState
@@ -32,8 +32,42 @@ function Pomodoro() {
 
   useInterval(
     () => {
-      // ToDo: Implement what should happen when the timer is running
-      // setIsTimerRunning(true);
+      // countdown
+      if (timerState["remainingTime"] > 0) {
+        setTimerState({
+          ...timerState,
+          ["remainingTime"]: timerState["remainingTime"] - 10,
+        });
+      }
+
+      // Play alarm
+      if (timerState["remainingTime"] == 0) {
+        new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play();
+      }
+
+      // switch to break
+      if (
+        timerState["remainingTime"] == 0 &&
+        timerState["currentMode"] === "focusing"
+      ) {
+        setTimerState({
+          ...timerState,
+          ["currentMode"]: "breaking",
+          ["remainingTime"]: timerState["breakDuration"],
+        });
+      }
+
+      // switch to focus
+      if (
+        timerState["remainingTime"] == 0 &&
+        timerState["currentMode"] === "breaking"
+      ) {
+        setTimerState({
+          ...timerState,
+          ["currentMode"]: "focusing",
+          ["remainingTime"]: timerState["focusDuration"],
+        });
+      }
     },
     //! temp set to 100 from 1000 for debugging purposes
     isTimerRunning ? 100 : null
@@ -47,6 +81,7 @@ function Pomodoro() {
       setTimerState({
         ...timerState,
         ["currentMode"]: "focusing",
+        ["remainingTime"]: timerState["focusDuration"],
       });
     }
     // toggle play/pause during active session
