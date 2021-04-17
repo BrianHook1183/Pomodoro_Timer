@@ -1,8 +1,8 @@
 import React from "react";
 import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
-function Feedback({ timerState }) {
-  const { focusing, focusDuration, remainingTime, isTimerRunning } = timerState;
+function Feedback({ timerState, isTimerRunning }) {
+  const { focusing, focusDuration, remainingTime } = timerState;
   const status = focusing ? "Focusing" : "On Break";
 
   return (

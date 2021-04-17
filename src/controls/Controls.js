@@ -1,7 +1,8 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-function Controls({ playPause, setTimerState, timerState: {isTimerRunning}  }) {
+// if I add timeIsRunning back into timerState, then the destructuring will look like  Controls({ playPause, setTimerState, timerState: {isTimerRunning}  })
+function Controls({ playPause, setTimerState, isTimerRunning }) {
   return (
     <div className="row">
       <div className="col">

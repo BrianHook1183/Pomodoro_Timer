@@ -9,11 +9,9 @@ function Pomodoro() {
     focusDuration: 1500,
     breakDuration: 300,
     focusing: true,
-    isTimerRunning: false,
+    // isTimerRunning: false,
     remainingTime: 1500,
   });
-
-  console.log({ ...timerState });
 
   //! isTimerRunning provided by starter code, might absorb into timerState
   // Timer starts out paused
@@ -37,10 +35,10 @@ function Pomodoro() {
       <Setup timerState={timerState} setTimerState={setTimerState} />
       <Controls
         playPause={playPause}
-        timerState={timerState}
+        isTimerRunning={isTimerRunning}
         setTimerState={setTimerState}
       />
-      <Feedback timerState={timerState} />
+      <Feedback timerState={timerState} isTimerRunning={isTimerRunning} />
     </div>
   );
 }
