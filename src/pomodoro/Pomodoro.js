@@ -16,17 +16,17 @@ function Pomodoro() {
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  function decrement(focusOrBreak) {
+  function decrement(durationSetting) {
     setTimerState({
       ...timerState,
-      [focusOrBreak]: timerState[focusOrBreak] - 60,
+      [durationSetting]: timerState[durationSetting] - 60,
     });
   }
 
-  function increment(focusOrBreak) {
+  function increment(durationSetting) {
     setTimerState({
       ...timerState,
-      [focusOrBreak]: timerState[focusOrBreak] + 60,
+      [durationSetting]: timerState[durationSetting] + 60,
     });
   }
 
@@ -41,7 +41,7 @@ function Pomodoro() {
 
   function playPause() {
     const { currentMode } = timerState;
-    // First press play
+    // Initial press of play
     if (!currentMode) {
       setIsTimerRunning((prevState) => !prevState);
       setTimerState({
@@ -49,7 +49,7 @@ function Pomodoro() {
         ["currentMode"]: "focusing",
       });
     }
-    // toggle play during focus or break
+    // toggle play/pause during active session
     if (currentMode) {
       setIsTimerRunning((prevState) => !prevState);
     }
