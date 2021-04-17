@@ -9,22 +9,23 @@ function Pomodoro() {
     focusDuration: 1500,
     breakDuration: 300,
     focusing: true,
-    // isTimerRunning: false,
+    isTimerRunning: true,
     remainingTime: 1500,
   });
 
   console.log({ ...timerState });
 
-  //! This state was provided by starter code, not sure if I can absorb it into my timerState or if that will break tests. Check back later
+  //! isTimerRunning provided by starter code, might absorb into timerState
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   useInterval(
     () => {
-      // (x)ToDo: Implement what should happen when the timer is running
-      setIsTimerRunning(true);
+      // ToDo: Implement what should happen when the timer is running
+      // setIsTimerRunning(true);
     },
-    isTimerRunning ? 1000 : null
+    //! temp set to 100 from 1000 for debugging purposes
+    isTimerRunning ? 100 : null
   );
 
   function playPause() {

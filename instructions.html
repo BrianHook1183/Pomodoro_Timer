@@ -28,11 +28,15 @@
       img {
         width: 100%;
       }
+      code {
+        font-size: 1.25em;
+        background-color: rgb(3, 46, 2);
+      }
     </style>
   </head>
   <body>
     <h1>Pomodoro Timer</h1>
-    <p>
+    <!-- <p>
       The Pomodoro Technique is a time management method developed by Francesco
       Cirillo in the late 1980s.<br />
       The technique uses a timer to break down work into intervals,
@@ -43,7 +47,7 @@
     <p>
       You will implement a Pomodoro timer that follows these steps (simplified
       from the original technique):
-    </p>
+    </p> -->
     <ol>
       <li>
         Set the focus duration (default to 25 minutes, no less than 5 or more
@@ -63,7 +67,7 @@
         timer starts.
       </li>
     </ol>
-    <p>
+    <!-- <p>
       This application uses
       <a href="https://getbootstrap.com/" target="_blank" rel="noopener"
         >Bootstrap 4</a
@@ -73,8 +77,8 @@
         >Open-Iconic icons</a
       >
       for icons.
-    </p>
-    <p>
+    </p> -->
+    <!-- <p>
       This project is designed to test your ability to work with rendering and
       state management using React. Before taking on this module, you should be
       comfortable with the following:
@@ -85,8 +89,8 @@
       <li>Writing React function components.</li>
       <li>Using hooks like <code>useState()</code></li>
       <li>Debugging React code through console output</li>
-    </ul>
-    <h2>Project setup</h2>
+    </ul> -->
+    <!-- <h2>Project setup</h2>
     <p>
       Follow the instructions below to get this project up and running on your
       own machine:
@@ -111,7 +115,7 @@
         <pre><code class="lang-bash">npm start
   </code></pre>
       </div>
-    </div>
+    </div> -->
     <h2>Initial Screen</h2>
     <p>
       The initial screen lets the user set the length of the focus and break and
@@ -218,7 +222,7 @@
     <p>Clicking the "play" button will always start a new focus session.</p>
     <h2>Specific instruction</h2>
     <ol>
-      <li>
+      <!-- <li>
         The code has various TODO items that should help you build the project
         as expected. With that said, feel free to make the changes you feel are
         necessary to accomplish the tasks.
@@ -226,19 +230,19 @@
       <li>
         Break up the code into at least two additional components that have a
         single responsibility.
-      </li>
+      </li> -->
       <li>
         The user cannot change the duration of the focus or break during a focus
         or break session.
       </li>
-      <li>
+      <!-- <li>
         Display durations as <code>mm:ss</code>. i.e. 05:00 for 5 minutes or
         18:45 for eighteen minutes and forty-five seconds.
       </li>
       <li>
         The tests use the <code>data-testid="..."</code> attributes on elements.
         Removing these will break one or more tests.
-      </li>
+      </li> -->
     </ol>
     <h2>Using <code>setInterval</code> in React</h2>
     <p>
@@ -305,7 +309,7 @@
       returns: A space delimited string of the class names which have a value of
       <code>true</code>.
     </p>
-    <h2>minutesToDuration function</h2>
+    <!-- <h2>minutesToDuration function</h2>
     <p>
       <strong>minutesToDuration</strong> formats a number of minutes as 'mm:00'.
       For example,
@@ -330,8 +334,8 @@
   secondsToDuration(<span class="hljs-number">930</span>); <span class="hljs-comment">// '15:30'</span>
   </code></pre>
       </div>
-    </div>
-    <h2>Debugging</h2>
+    </div> -->
+    <!-- <h2>Debugging</h2>
     <p>
       If you have a failing test, but the application appears to be working
       correctly when you view it in the browser, try the following debugging
@@ -374,7 +378,7 @@
         <code>isTimerRunning ? 1000 : null</code> so the timer runs at normal
         speed.
       </li>
-    </ol>
+    </ol> -->
 
     <!-- <script src="" async defer></script> -->
   </body>
