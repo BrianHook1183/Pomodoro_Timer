@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-function Controls({ playPause, isTimerRunning }) {
+function Controls({ playPause, setTimerState, timerState: {isTimerRunning}  }) {
   return (
     <div className="row">
       <div className="col">

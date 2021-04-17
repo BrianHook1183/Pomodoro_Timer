@@ -9,7 +9,7 @@ function Pomodoro() {
     focusDuration: 1500,
     breakDuration: 300,
     focusing: true,
-    isTimerRunning: true,
+    isTimerRunning: false,
     remainingTime: 1500,
   });
 
@@ -37,7 +37,7 @@ function Pomodoro() {
       <Setup timerState={timerState} setTimerState={setTimerState} />
       <Controls
         playPause={playPause}
-        isTimerRunning={isTimerRunning}
+        timerState={timerState}
         setTimerState={setTimerState}
       />
       <Feedback timerState={timerState} />
