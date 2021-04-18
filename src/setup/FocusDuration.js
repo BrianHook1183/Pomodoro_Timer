@@ -1,5 +1,5 @@
 import React from "react";
-import { minutesToDuration, secondsToDuration } from "../utils/duration";
+import { secondsToDuration } from "../utils/duration";
 
 function FocusDuration({ timerState, decrement, increment }) {
   const { focusDuration, currentMode } = timerState;
@@ -7,12 +7,12 @@ function FocusDuration({ timerState, decrement, increment }) {
     <div className="col">
       <div className="input-group input-group-lg mb-2">
         <span className="input-group-text" data-testid="duration-focus">
-          Focus Duration: {secondsToDuration(focusDuration)}
+          Focus Duration: {secondsToDuration(focusDuration.set)}
         </span>
         <div className="input-group-append">
           {/* TODO: disable during a focus or break session */}
           <button
-            onClick={() => decrement("focusDuration")}
+            onClick={() => decrement("focusDuration", -60)}
             type="button"
             className="btn btn-secondary"
             data-testid="decrease-focus"
@@ -22,7 +22,7 @@ function FocusDuration({ timerState, decrement, increment }) {
           </button>
           {/* TODO: disable during a focus or break session */}
           <button
-            onClick={() => increment("focusDuration")}
+            onClick={() => increment("focusDuration", 60)}
             type="button"
             className="btn btn-secondary"
             data-testid="increase-focus"

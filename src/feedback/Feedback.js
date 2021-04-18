@@ -9,7 +9,7 @@ function Feedback({ timerState, isTimerRunning }) {
     remainingTime,
   } = timerState;
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
-  const duration = currentMode === "focusing" ? focusDuration : breakDuration;
+  const duration = currentMode === "focusing" ? focusDuration.set : breakDuration.set;
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
   const progress = (1 - remainingTime / duration) * 100;
 

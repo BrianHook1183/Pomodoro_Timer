@@ -6,27 +6,30 @@ import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
   const [timerState, setTimerState] = useState({
-    focusDuration: 1500,
-    breakDuration: 300,
+    focusDuration: { set: 1500, min: 300, max: 3600 },
+    breakDuration: { set: 300, min: 60, max: 900 },
     currentMode: false,
     remainingTime: null,
   });
+  //! Improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}
 
   //! isTimerRunning provided by starter code, might absorb into timerState
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-  function decrement(durationSetting) {
-    setTimerState({
-      ...timerState,
-      [durationSetting]: timerState[durationSetting] - 60,
-    });
+  function limitAdjust(newTime, min, max) {
+    return newTime < min ? min : newTime > max ? max : newTime;
   }
 
-  function increment(durationSetting) {
+  function adjust(mode, adjustBy) {
+    const newTime = timerState[mode].set + adjustBy;
+
     setTimerState({
       ...timerState,
-      [durationSetting]: timerState[durationSetting] + 60,
+      [mode]: {
+        ...timerState[mode],
+        set: limitAdjust(newTime, timerState[mode].min, timerState[mode].max),
+      },
     });
   }
 
@@ -53,7 +56,7 @@ function Pomodoro() {
         setTimerState({
           ...timerState,
           ["currentMode"]: "breaking",
-          ["remainingTime"]: timerState["breakDuration"],
+          ["remainingTime"]: timerState["breakDuration"].set,
         });
       }
 
@@ -65,7 +68,7 @@ function Pomodoro() {
         setTimerState({
           ...timerState,
           ["currentMode"]: "focusing",
-          ["remainingTime"]: timerState["focusDuration"],
+          ["remainingTime"]: timerState["focusDuration"].set,
         });
       }
     },
@@ -81,7 +84,7 @@ function Pomodoro() {
       setTimerState({
         ...timerState,
         ["currentMode"]: "focusing",
-        ["remainingTime"]: timerState["focusDuration"],
+        ["remainingTime"]: timerState["focusDuration"].set,
       });
     }
     // toggle play/pause during active session
@@ -100,11 +103,7 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <Setup
-        timerState={timerState}
-        decrement={decrement}
-        increment={increment}
-      />
+      <Setup timerState={timerState} decrement={adjust} increment={adjust} />
       <Controls
         isTimerRunning={isTimerRunning}
         playPause={playPause}
