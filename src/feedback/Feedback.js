@@ -9,9 +9,7 @@ function Feedback({
   breakDuration,
 }) {
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
-  const duration = displayDuration(
-    currentMode === "focusing" ? focusDuration : breakDuration
-  );
+  const duration = currentMode === "focusing" ? focusDuration : breakDuration;
   const remainingDuration = displayDuration(remainingTime);
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
   const progress = (1 - remainingTime / duration) * 100;
@@ -23,7 +21,7 @@ function Feedback({
         <div className="row mb-2">
           <div className="col">
             <h2 data-testid="session-title">
-              {status} for {duration} minutes
+              {status} for {displayDuration(duration)} minutes
             </h2>
             <p className="lead" data-testid="session-sub-title">
               {remainingDuration} remaining
