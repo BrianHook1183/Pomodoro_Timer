@@ -1,1 +1,4 @@
 src/__tests__/Pomodoro.tests.js
+node_modules
+package-lock.json
+git
