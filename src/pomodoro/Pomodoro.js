@@ -101,6 +101,15 @@ function Pomodoro() {
     });
   }
 
+  function demoSettings() {
+     console.log("success");
+     setTimerState({
+      ...timerState,
+      focusDuration: { set: 5, min: 3, max: 10 },
+      breakDuration: { set: 3, min: 2, max: 5 },
+    });
+  }
+
   return (
     <div className="pomodoro">
       <Setup
@@ -110,6 +119,8 @@ function Pomodoro() {
         focusDuration={focusDuration}
         breakDuration={breakDuration}
         currentMode={currentMode}
+        demoSettings={demoSettings}
+        isTimerRunning={isTimerRunning}
       />
       <Controls
         isTimerRunning={isTimerRunning}
