@@ -1,15 +1,18 @@
 import React from "react";
 
-function Feedback({ timerState, isTimerRunning, displayDuration }) {
-  const {
-    currentMode,
-    focusDuration,
-    breakDuration,
-    remainingTime,
-  } = timerState;
+function Feedback({
+  isTimerRunning,
+  displayDuration,
+  remainingTime,
+  currentMode,
+  focusDuration,
+  breakDuration,
+}) {
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
-  const duration =
-    currentMode === "focusing" ? focusDuration.set : breakDuration.set;
+  const duration = displayDuration(
+    currentMode === "focusing" ? focusDuration : breakDuration
+  );
+  const remainingDuration = displayDuration(remainingTime);
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
   const progress = (1 - remainingTime / duration) * 100;
 
@@ -20,10 +23,10 @@ function Feedback({ timerState, isTimerRunning, displayDuration }) {
         <div className="row mb-2">
           <div className="col">
             <h2 data-testid="session-title">
-              {status} for {displayDuration(duration)} minutes
+              {status} for {duration} minutes
             </h2>
             <p className="lead" data-testid="session-sub-title">
-              {displayDuration(remainingTime)} remaining
+              {remainingDuration} remaining
             </p>
             <h2>{isPaused}</h2>
           </div>

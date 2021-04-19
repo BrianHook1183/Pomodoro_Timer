@@ -1,13 +1,18 @@
 import React from "react";
 
-function BreakDuration({ timerState, decrement, increment, displayDuration }) {
-  const { breakDuration, currentMode } = timerState;
+function BreakDuration({
+  decrement,
+  increment,
+  displayDuration,
+  breakDuration,
+  currentMode,
+}) {
   return (
     <div className="col">
       <div className="float-right">
         <div className="input-group input-group-lg mb-2">
           <span className="input-group-text" data-testid="duration-break">
-            Break Duration: {displayDuration(breakDuration.set)}
+            Break Duration: {displayDuration(breakDuration)}
           </span>
           <div className="input-group-append">
             <button

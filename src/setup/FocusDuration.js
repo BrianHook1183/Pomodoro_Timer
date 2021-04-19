@@ -1,13 +1,17 @@
 import React from "react";
 
-function FocusDuration({ timerState, decrement, increment, displayDuration }) {
-  const { focusDuration, currentMode } = timerState;
-
+function FocusDuration({
+  decrement,
+  increment,
+  displayDuration,
+  focusDuration,
+  currentMode,
+}) {
   return (
     <div className="col">
       <div className="input-group input-group-lg mb-2">
         <span className="input-group-text" data-testid="duration-focus">
-          Focus Duration: {displayDuration(focusDuration.set)}
+          Focus Duration: {displayDuration(focusDuration)}
         </span>
         <div className="input-group-append">
           <button

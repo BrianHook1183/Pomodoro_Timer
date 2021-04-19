@@ -12,7 +12,6 @@ function Pomodoro() {
     currentMode: false,
     remainingTime: null,
   });
-
   //Destructuring
   const { remainingTime, currentMode } = timerState;
   const focusDuration = timerState["focusDuration"].set;
@@ -103,21 +102,26 @@ function Pomodoro() {
   return (
     <div className="pomodoro">
       <Setup
-        timerState={timerState}
         decrement={adjust}
         increment={adjust}
         displayDuration={displayDuration}
+        focusDuration={focusDuration}
+        breakDuration={breakDuration}
+        currentMode={currentMode}
       />
       <Controls
         isTimerRunning={isTimerRunning}
         playPause={playPause}
-        timerState={timerState}
+        currentMode={currentMode}
         stopTimer={stopTimer}
       />
       <Feedback
-        timerState={timerState}
         isTimerRunning={isTimerRunning}
         displayDuration={displayDuration}
+        remainingTime={remainingTime}
+        currentMode={currentMode}
+        focusDuration={focusDuration}
+        breakDuration={breakDuration}
       />
     </div>
   );
