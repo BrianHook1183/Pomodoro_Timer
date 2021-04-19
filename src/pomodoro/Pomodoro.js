@@ -6,6 +6,7 @@ import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
+  //! Improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}
   const [timerState, setTimerState] = useState({
     focusDuration: { set: 1500, min: 300, max: 3600 },
     breakDuration: { set: 300, min: 60, max: 900 },
@@ -17,6 +18,7 @@ function Pomodoro() {
   const focusDuration = timerState["focusDuration"].set;
   const breakDuration = timerState["breakDuration"].set;
 
+  //! isTimerRunning was provided by starter code, might absorb into timerState later if it doesn't affect Qualified tests
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
