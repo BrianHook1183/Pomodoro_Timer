@@ -1,17 +1,15 @@
 import React from "react";
-import { secondsToDuration } from "../utils/duration";
 
-function BreakDuration({ timerState, decrement, increment }) {
+function BreakDuration({ timerState, decrement, increment, displayDuration }) {
   const { breakDuration, currentMode } = timerState;
   return (
     <div className="col">
       <div className="float-right">
         <div className="input-group input-group-lg mb-2">
           <span className="input-group-text" data-testid="duration-break">
-            Break Duration: {secondsToDuration(breakDuration.set)}
+            Break Duration: {displayDuration(breakDuration.set)}
           </span>
           <div className="input-group-append">
-            {/* TODO: disable during a focus or break session*/}
             <button
               onClick={() => decrement("breakDuration", -60)}
               type="button"
@@ -21,7 +19,6 @@ function BreakDuration({ timerState, decrement, increment }) {
             >
               <span className="oi oi-minus" />
             </button>
-            {/* TODO: disable during a focus or break session*/}
             <button
               onClick={() => increment("breakDuration", 60)}
               type="button"

@@ -1,7 +1,6 @@
 import React from "react";
 import classNames from "../utils/class-names";
 
-// if I add timeIsRunning back into timerState, then the destructuring will look like  Controls({ playPause, isTimerRunning, stopTimer, timerState: {isTimerRunning}  })
 function Controls({
   playPause,
   isTimerRunning,
@@ -31,7 +30,7 @@ function Controls({
               })}
             />
           </button>
-          {/* TODO: Implement stopping the current focus or break session and disable when there is no active session */}
+
           <button
             type="button"
             className="btn btn-secondary"

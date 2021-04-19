@@ -1,7 +1,6 @@
 import React from "react";
-import { minutesToDuration, secondsToDuration } from "../utils/duration";
 
-function Feedback({ timerState, isTimerRunning }) {
+function Feedback({ timerState, isTimerRunning, displayDuration }) {
   const {
     currentMode,
     focusDuration,
@@ -9,7 +8,8 @@ function Feedback({ timerState, isTimerRunning }) {
     remainingTime,
   } = timerState;
   const status = currentMode === "focusing" ? "Focusing" : "On Break";
-  const duration = currentMode === "focusing" ? focusDuration.set : breakDuration.set;
+  const duration =
+    currentMode === "focusing" ? focusDuration.set : breakDuration.set;
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
   const progress = (1 - remainingTime / duration) * 100;
 
@@ -20,10 +20,10 @@ function Feedback({ timerState, isTimerRunning }) {
         <div className="row mb-2">
           <div className="col">
             <h2 data-testid="session-title">
-              {status} for {secondsToDuration(duration)} minutes
+              {status} for {displayDuration(duration)} minutes
             </h2>
             <p className="lead" data-testid="session-sub-title">
-              {secondsToDuration(remainingTime)} remaining
+              {displayDuration(remainingTime)} remaining
             </p>
             <h2>{isPaused}</h2>
           </div>

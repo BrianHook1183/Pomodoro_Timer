@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import useInterval from "../utils/useInterval";
+import { secondsToDuration, minutesToDuration } from "../utils/duration";
 import Setup from "../setup/Setup";
 import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
@@ -11,9 +12,12 @@ function Pomodoro() {
     currentMode: false,
     remainingTime: null,
   });
-  //! Improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}
 
-  //! isTimerRunning provided by starter code, might absorb into timerState
+  //Destructuring
+  const { remainingTime, currentMode } = timerState;
+  const focusDuration = timerState["focusDuration"].set;
+  const breakDuration = timerState["breakDuration"].set;
+
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
@@ -33,61 +37,56 @@ function Pomodoro() {
     });
   }
 
+  function displayDuration(duration) {
+    return duration >= 3600
+      ? minutesToDuration(duration / 60)
+      : secondsToDuration(duration);
+  }
+
+  function toggleMode(mode, focusing, breaking) {
+    return (mode == focusing && breaking) || focusing;
+  }
+
   useInterval(
     () => {
       // countdown
-      if (timerState["remainingTime"] > 0) {
+      if (remainingTime > 0) {
         setTimerState({
           ...timerState,
-          ["remainingTime"]: timerState["remainingTime"] - 10,
+          ["remainingTime"]: remainingTime - 1,
         });
       }
 
-      // Play alarm
-      if (timerState["remainingTime"] == 0) {
+      // Play alarm and switch modes
+      if (remainingTime === 0) {
         new Audio(`https://bigsoundbank.com/UPLOAD/mp3/1482.mp3`).play();
-      }
 
-      // switch to break
-      if (
-        timerState["remainingTime"] == 0 &&
-        timerState["currentMode"] === "focusing"
-      ) {
+        const otherMode = toggleMode(currentMode, "focusing", "breaking");
+
+        const otherDuration =
+          otherMode == "focusing" ? focusDuration : breakDuration;
+
         setTimerState({
           ...timerState,
-          ["currentMode"]: "breaking",
-          ["remainingTime"]: timerState["breakDuration"].set,
-        });
-      }
-
-      // switch to focus
-      if (
-        timerState["remainingTime"] == 0 &&
-        timerState["currentMode"] === "breaking"
-      ) {
-        setTimerState({
-          ...timerState,
-          ["currentMode"]: "focusing",
-          ["remainingTime"]: timerState["focusDuration"].set,
+          ["currentMode"]: otherMode,
+          ["remainingTime"]: otherDuration,
         });
       }
     },
-    //! temp set to 100 from 1000 for debugging purposes
-    isTimerRunning ? 100 : null
+    isTimerRunning ? 1000 : null
   );
 
   function playPause() {
-    const { currentMode } = timerState;
     // Initial press of play
     if (!currentMode) {
       setIsTimerRunning((prevState) => !prevState);
       setTimerState({
         ...timerState,
         ["currentMode"]: "focusing",
-        ["remainingTime"]: timerState["focusDuration"].set,
+        ["remainingTime"]: focusDuration,
       });
     }
-    // toggle play/pause during active session
+    // toggle play/pause during active mode
     if (currentMode) {
       setIsTimerRunning((prevState) => !prevState);
     }
@@ -103,14 +102,23 @@ function Pomodoro() {
 
   return (
     <div className="pomodoro">
-      <Setup timerState={timerState} decrement={adjust} increment={adjust} />
+      <Setup
+        timerState={timerState}
+        decrement={adjust}
+        increment={adjust}
+        displayDuration={displayDuration}
+      />
       <Controls
         isTimerRunning={isTimerRunning}
         playPause={playPause}
         timerState={timerState}
         stopTimer={stopTimer}
       />
-      <Feedback timerState={timerState} isTimerRunning={isTimerRunning} />
+      <Feedback
+        timerState={timerState}
+        isTimerRunning={isTimerRunning}
+        displayDuration={displayDuration}
+      />
     </div>
   );
 }
