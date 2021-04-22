@@ -6,7 +6,8 @@ import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
-  //! Improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}
+  //TODO (1) improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}. this would fix propTypes as well. If i DON'T do this, then do "todo (2)"
+  //TODO (2) propType for currentMode could be a string, and set default state as null instead of false. That way i'm not mixing up types (will always be a string after taken out of its default null) 
   const [timerState, setTimerState] = useState({
     focusDuration: { set: 1500, min: 300, max: 3600 },
     breakDuration: { set: 300, min: 60, max: 900 },
@@ -18,12 +19,12 @@ function Pomodoro() {
   const focusDuration = timerState["focusDuration"].set;
   const breakDuration = timerState["breakDuration"].set;
 
-  //! isTimerRunning was provided by starter code, might absorb into timerState later if it doesn't affect Qualified tests
+  //! isTimerRunning was provided by starter code, might absorb into timerState later if it doesn't affect Qualified tests and I can figure out using prevState on nested object
   // Timer starts out paused
   const [isTimerRunning, setIsTimerRunning] = useState(false);
 
   function limitAdjust(newTime, min, max) {
-    return newTime < min ? min : newTime > max ? max : newTime;
+    return newTime < min ? min : (newTime > max ? max : newTime);
   }
 
   function adjust(mode, adjustBy) {
