@@ -6,8 +6,6 @@ import Controls from "../controls/Controls";
 import Feedback from "../feedback/Feedback";
 
 function Pomodoro() {
-  //TODO (1) improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}. this would fix propTypes as well. If i DON'T do this, then do "todo (2)"
-  //TODO (2) propType for currentMode could be a string, and set default state as null instead of false. That way i'm not mixing up types (will always be a string after taken out of its default null)
   const [timerState, setTimerState] = useState({
     focusDuration: { set: 1500, min: 300, max: 3600 },
     breakDuration: { set: 300, min: 60, max: 900 },
