@@ -45,8 +45,17 @@ function Pomodoro() {
       : secondsToDuration(duration);
   }
 
+  //* logic for mode = focusing
+  // "focusing"" === focusing // returns true
+  // true &&  breaking // both truthy, returns right side: "breaking"
+  // next step is now  "breaking" || "focusing" //  truthy or truthy returns left side because it is short circuited and doesn't even read the right side, so returns the final result: "breaking"
+
+  ///*logic for mode = breaking
+  //  "breaking" === focusing // returns false
+  // causes short-circuit, moves on to:
+  // false || focusing // (false or truthy) is false, and therefore will return the right side / truthy value, so final result is "focusing"
   function toggleMode(mode, focusing, breaking) {
-    return (mode == focusing && breaking) || focusing;
+    return (mode === focusing && breaking) || focusing;
   }
 
   useInterval(
