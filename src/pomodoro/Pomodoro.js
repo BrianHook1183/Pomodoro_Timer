@@ -11,7 +11,7 @@ function Pomodoro() {
   const [timerState, setTimerState] = useState({
     focusDuration: { set: 1500, min: 300, max: 3600 },
     breakDuration: { set: 300, min: 60, max: 900 },
-    currentMode: false,
+    currentMode: null,
     remainingTime: null,
   });
   //Destructuring
@@ -107,7 +107,7 @@ function Pomodoro() {
     setIsTimerRunning(false);
     setTimerState({
       ...timerState,
-      ["currentMode"]: false,
+      ["currentMode"]: null,
     });
   }
 
