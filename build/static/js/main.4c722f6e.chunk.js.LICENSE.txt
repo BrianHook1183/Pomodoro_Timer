@@ -1,1 +1,0 @@
-//! Improvements: currentMode could be absorbed into each of focusDuration and breakDuration as {active: boolean}
