@@ -11,7 +11,6 @@ function Setup({
   focusDuration,
   currentMode,
   demoSettings,
-  isTimerRunning,
 }) {
   return (
     <div className="row">
@@ -22,7 +21,7 @@ function Setup({
         currentMode={currentMode}
         focusDuration={focusDuration}
       />
-      <DemoSettings demoSettings={demoSettings} />
+      <DemoSettings demoSettings={demoSettings} currentMode={currentMode} />
       <BreakDuration
         decrement={decrement}
         increment={increment}
