@@ -112,7 +112,6 @@ function Pomodoro() {
   }
 
   function demoSettings() {
-     console.log("success");
      setTimerState({
       ...timerState,
       focusDuration: { set: 5, min: 3, max: 10 },
