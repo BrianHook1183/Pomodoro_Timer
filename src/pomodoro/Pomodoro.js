@@ -112,11 +112,19 @@ function Pomodoro() {
   }
 
   function demoSettings() {
-    setTimerState({
-      ...timerState,
-      focusDuration: { set: 5, min: 3, max: 10 },
-      breakDuration: { set: 3, min: 2, max: 5 },
-    });
+    if (timerState["focusDuration"].min > 100) {
+      setTimerState({
+        ...timerState,
+        focusDuration: { set: 5, min: 3, max: 10 },
+        breakDuration: { set: 3, min: 2, max: 5 },
+      });
+    } else {
+      setTimerState({
+        ...timerState,
+        focusDuration: { set: 1500, min: 300, max: 3600 },
+        breakDuration: { set: 300, min: 60, max: 900 },
+      });
+    }
   }
 
   return (

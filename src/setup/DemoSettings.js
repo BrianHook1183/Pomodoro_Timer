@@ -6,13 +6,11 @@ function DemoSettings({ demoSettings }) {
       <div className="mb-4">
         <button
           type="button"
-          className="btn btn-outline-warning"
+          className="btn-sm btn-outline-info"
           title="Start Demo Mode"
           onClick={() => demoSettings()}
         >
-          <span>demo mode:</span>
-          <br />
-          <span>(lower duration limits)</span>
+          <span>toggle demo mode</span>
         </button>
       </div>
     </div>
