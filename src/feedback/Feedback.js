@@ -13,6 +13,7 @@ function Feedback({
   const remainingDuration = displayDuration(remainingTime);
   const isPaused = !isTimerRunning ? "Paused" : "~~>";
   const progress = (1 - remainingTime / duration) * 100;
+  const durationTimeUnit = duration === 60 ? "minute" : (duration < 60 ? "seconds" : "minutes");
 
   return (
     // This area only shows when a focus or break session is running or paused
@@ -21,7 +22,7 @@ function Feedback({
         <div className="row mb-2">
           <div className="col">
             <h2 data-testid="session-title">
-              {status} for {displayDuration(duration)} minutes
+              {status} for {displayDuration(duration)} {durationTimeUnit}
             </h2>
             <p className="lead" data-testid="session-sub-title">
               {remainingDuration} remaining
